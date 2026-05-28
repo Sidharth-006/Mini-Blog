@@ -1,14 +1,22 @@
 function Loader() {
   return (
-    <div className="min-h-screen flex justify-center items-center">
+    <div className="min-h-screen flex justify-center items-center px-4">
 
       <div className="text-center">
 
-        <div className="w-16 h-16 rounded-full border-[6px] border-violet-200 border-t-violet-600 animate-spin mx-auto" />
+        {/* Spinner */}
+        <div
+          className="w-12 h-12 sm:w-16 sm:h-16 rounded-full
+          border-[5px] sm:border-[6px]
+          border-violet-200 border-t-violet-600
+          animate-spin mx-auto"
+        />
 
-        <p className="mt-5 text-slate-600 text-lg font-medium">
+        {/* Text */}
+        <p className="mt-4 sm:mt-5 text-slate-600 text-base sm:text-lg font-medium">
           Loading...
         </p>
+
       </div>
     </div>
   );

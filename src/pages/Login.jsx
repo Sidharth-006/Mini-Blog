@@ -5,11 +5,8 @@ import Navbar from "../components/Navbar";
 function Login() {
   const navigate = useNavigate();
 
-  const [isLogin, setIsLogin] =
-    useState(true);
-
-  const [error, setError] =
-    useState("");
+  const [isLogin, setIsLogin] = useState(true);
+  const [error, setError] = useState("");
 
   const [formData, setFormData] =
     useState({
@@ -20,16 +17,13 @@ function Login() {
 
   // remove old token on page load
   useEffect(() => {
-    localStorage.removeItem(
-      "token"
-    );
+    localStorage.removeItem("token");
   }, []);
 
   const handleChange = (e) => {
     setFormData({
       ...formData,
-      [e.target.name]:
-        e.target.value,
+      [e.target.name]: e.target.value,
     });
   };
 
@@ -45,17 +39,14 @@ function Login() {
         !formData.email ||
         !formData.password
       ) {
-        setError(
-          "Please fill all fields"
-        );
+        setError("Please fill all fields");
         return;
       }
 
       const userData = {
         name: formData.name,
         email: formData.email,
-        password:
-          formData.password,
+        password: formData.password,
       };
 
       localStorage.setItem(
@@ -80,9 +71,7 @@ function Login() {
 
     // LOGIN
     const savedUser =
-      localStorage.getItem(
-        "user"
-      );
+      localStorage.getItem("user");
 
     if (!savedUser) {
       setError(
@@ -119,18 +108,19 @@ function Login() {
     <div className="min-h-screen bg-gradient-to-br from-violet-50 via-sky-50 to-pink-50">
       <Navbar />
 
-      <div className="flex justify-center items-center px-5 py-16">
+      <div className="flex justify-center items-center px-4 sm:px-5 py-10 sm:py-16">
 
-        <div className="w-full max-w-md bg-white rounded-[35px] shadow-xl border border-slate-200 p-10">
+        <div className="w-full max-w-md bg-white rounded-[28px] sm:rounded-[35px] shadow-xl border border-slate-200 p-5 sm:p-8 md:p-10">
 
-          <div className="text-center mb-8">
-            <h1 className="text-4xl font-bold text-slate-900">
+          {/* Heading */}
+          <div className="text-center mb-6 sm:mb-8">
+            <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-slate-900">
               {isLogin
                 ? "Welcome Back 👋"
                 : "Create Account 🚀"}
             </h1>
 
-            <p className="text-slate-600 mt-2">
+            <p className="text-slate-600 mt-2 text-sm sm:text-base">
               {isLogin
                 ? "Login to continue"
                 : "Signup to start blogging"}
@@ -138,13 +128,13 @@ function Login() {
           </div>
 
           {/* Toggle Buttons */}
-          <div className="flex bg-slate-100 rounded-2xl p-1 mb-8">
+          <div className="flex bg-slate-100 rounded-2xl p-1 mb-6 sm:mb-8">
             <button
               type="button"
               onClick={() =>
                 setIsLogin(true)
               }
-              className={`flex-1 py-3 rounded-2xl font-semibold transition ${
+              className={`flex-1 py-2 sm:py-3 rounded-2xl font-semibold transition text-sm sm:text-base ${
                 isLogin
                   ? "bg-gradient-to-r from-violet-500 to-sky-500 text-white"
                   : "text-slate-600"
@@ -158,7 +148,7 @@ function Login() {
               onClick={() =>
                 setIsLogin(false)
               }
-              className={`flex-1 py-3 rounded-2xl font-semibold transition ${
+              className={`flex-1 py-2 sm:py-3 rounded-2xl font-semibold transition text-sm sm:text-base ${
                 !isLogin
                   ? "bg-gradient-to-r from-violet-500 to-sky-500 text-white"
                   : "text-slate-600"
@@ -168,22 +158,19 @@ function Login() {
             </button>
           </div>
 
+          {/* Form */}
           <form
             onSubmit={handleSubmit}
-            className="space-y-5"
+            className="space-y-4 sm:space-y-5"
           >
             {!isLogin && (
               <input
                 type="text"
                 name="name"
                 placeholder="Full Name"
-                value={
-                  formData.name
-                }
-                onChange={
-                  handleChange
-                }
-                className="w-full px-5 py-4 rounded-2xl border border-slate-300 outline-none focus:ring-2 focus:ring-violet-400"
+                value={formData.name}
+                onChange={handleChange}
+                className="w-full px-4 sm:px-5 py-3 sm:py-4 rounded-2xl border border-slate-300 outline-none focus:ring-2 focus:ring-violet-400 text-sm sm:text-base"
               />
             )}
 
@@ -191,26 +178,18 @@ function Login() {
               type="email"
               name="email"
               placeholder="Email Address"
-              value={
-                formData.email
-              }
-              onChange={
-                handleChange
-              }
-              className="w-full px-5 py-4 rounded-2xl border border-slate-300 outline-none focus:ring-2 focus:ring-violet-400"
+              value={formData.email}
+              onChange={handleChange}
+              className="w-full px-4 sm:px-5 py-3 sm:py-4 rounded-2xl border border-slate-300 outline-none focus:ring-2 focus:ring-violet-400 text-sm sm:text-base"
             />
 
             <input
               type="password"
               name="password"
               placeholder="Password"
-              value={
-                formData.password
-              }
-              onChange={
-                handleChange
-              }
-              className="w-full px-5 py-4 rounded-2xl border border-slate-300 outline-none focus:ring-2 focus:ring-violet-400"
+              value={formData.password}
+              onChange={handleChange}
+              className="w-full px-4 sm:px-5 py-3 sm:py-4 rounded-2xl border border-slate-300 outline-none focus:ring-2 focus:ring-violet-400 text-sm sm:text-base"
             />
 
             {error && (
@@ -221,7 +200,7 @@ function Login() {
 
             <button
               type="submit"
-              className="w-full py-4 rounded-2xl bg-gradient-to-r from-violet-500 to-sky-500 text-white font-semibold hover:scale-[1.02] duration-300 shadow-lg"
+              className="w-full py-3 sm:py-4 rounded-2xl bg-gradient-to-r from-violet-500 to-sky-500 text-white font-semibold hover:scale-[1.02] duration-300 shadow-lg text-sm sm:text-base"
             >
               {isLogin
                 ? "Login"

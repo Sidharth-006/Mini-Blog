@@ -35,33 +35,34 @@ function Home() {
     <div className="min-h-screen bg-white text-gray-900">
       <Navbar />
 
-      <div className="max-w-6xl mx-auto px-4 py-10">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 py-8 sm:py-10">
 
-        <h1 className="text-center text-4xl font-bold mb-10 text-gray-800">
+        {/* Heading */}
+        <h1 className="text-center text-2xl sm:text-3xl md:text-4xl font-bold mb-8 sm:mb-10 text-gray-800">
           Explore Blogs
         </h1>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {/* Posts Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
           {posts.map((post) => (
             <PostCard key={post.id} post={post} />
           ))}
         </div>
 
-        <div className="flex justify-center items-center gap-4 mt-10">
+        {/* Pagination */}
+        <div className="flex justify-center items-center gap-3 sm:gap-4 mt-8 sm:mt-10 flex-wrap">
 
           <button
             disabled={page === 1}
             onClick={() => setPage(page - 1)}
-            className="px-5 py-2 rounded-md border border-gray-300 bg-white text-gray-700 hover:bg-gray-100 disabled:opacity-50 disabled:cursor-not-allowed"
+            className="px-4 sm:px-5 py-2 rounded-md border border-gray-300 bg-white text-gray-700 hover:bg-gray-100 disabled:opacity-50 disabled:cursor-not-allowed text-sm sm:text-base"
           >
             Previous
           </button>
 
-          {/* removed "Page 1" text completely */}
-
           <button
             onClick={() => setPage(page + 1)}
-            className="px-5 py-2 rounded-md bg-blue-600 text-white hover:bg-blue-700"
+            className="px-4 sm:px-5 py-2 rounded-md bg-blue-600 text-white hover:bg-blue-700 text-sm sm:text-base"
           >
             Next
           </button>
