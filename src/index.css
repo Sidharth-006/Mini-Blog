@@ -1,0 +1,36 @@
+@import "tailwindcss";
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  overflow-x: hidden;
+
+  /* Clean white modern background */
+  background: #f9fafb;
+
+  /* Ensures all default text is visible */
+  color: #000;
+
+  font-family: sans-serif;
+}
+
+/* Better box sizing */
+* {
+  box-sizing: border-box;
+}
+
+/* Optional: better text rendering */
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Optional: selection color */
+::selection {
+  background: #000;
+  color: #fff;
+}
