@@ -23,7 +23,8 @@ function Login() {
   const handleChange = (e) => {
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value,
+      [e.target.name]:
+        e.target.value,
     });
   };
 
@@ -39,14 +40,17 @@ function Login() {
         !formData.email ||
         !formData.password
       ) {
-        setError("Please fill all fields");
+        setError(
+          "Please fill all fields"
+        );
         return;
       }
 
       const userData = {
         name: formData.name,
         email: formData.email,
-        password: formData.password,
+        password:
+          formData.password,
       };
 
       localStorage.setItem(
@@ -71,7 +75,9 @@ function Login() {
 
     // LOGIN
     const savedUser =
-      localStorage.getItem("user");
+      localStorage.getItem(
+        "user"
+      );
 
     if (!savedUser) {
       setError(
@@ -103,6 +109,67 @@ function Login() {
 
     navigate("/dashboard");
   };
+
+  // FORGOT PASSWORD
+  const handleForgotPassword =
+    () => {
+      const savedUser =
+        localStorage.getItem(
+          "user"
+        );
+
+      if (!savedUser) {
+        alert(
+          "No account found. Please signup first."
+        );
+        return;
+      }
+
+      if (!formData.email) {
+        alert(
+          "Please enter your email first."
+        );
+        return;
+      }
+
+      const parsedUser =
+        JSON.parse(savedUser);
+
+      if (
+        parsedUser.email !==
+        formData.email
+      ) {
+        alert(
+          "Email not found."
+        );
+        return;
+      }
+
+      const newPassword =
+        prompt(
+          "Enter new password"
+        );
+
+      if (!newPassword)
+        return;
+
+      const updatedUser = {
+        ...parsedUser,
+        password:
+          newPassword,
+      };
+
+      localStorage.setItem(
+        "user",
+        JSON.stringify(
+          updatedUser
+        )
+      );
+
+      alert(
+        "Password updated successfully. Please login."
+      );
+    };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-violet-50 via-sky-50 to-pink-50">
@@ -168,8 +235,12 @@ function Login() {
                 type="text"
                 name="name"
                 placeholder="Full Name"
-                value={formData.name}
-                onChange={handleChange}
+                value={
+                  formData.name
+                }
+                onChange={
+                  handleChange
+                }
                 className="w-full px-4 sm:px-5 py-3 sm:py-4 rounded-2xl border border-slate-300 outline-none focus:ring-2 focus:ring-violet-400 text-sm sm:text-base"
               />
             )}
@@ -178,8 +249,12 @@ function Login() {
               type="email"
               name="email"
               placeholder="Email Address"
-              value={formData.email}
-              onChange={handleChange}
+              value={
+                formData.email
+              }
+              onChange={
+                handleChange
+              }
               className="w-full px-4 sm:px-5 py-3 sm:py-4 rounded-2xl border border-slate-300 outline-none focus:ring-2 focus:ring-violet-400 text-sm sm:text-base"
             />
 
@@ -187,10 +262,29 @@ function Login() {
               type="password"
               name="password"
               placeholder="Password"
-              value={formData.password}
-              onChange={handleChange}
+              value={
+                formData.password
+              }
+              onChange={
+                handleChange
+              }
               className="w-full px-4 sm:px-5 py-3 sm:py-4 rounded-2xl border border-slate-300 outline-none focus:ring-2 focus:ring-violet-400 text-sm sm:text-base"
             />
+
+            {/* Forgot Password */}
+            {isLogin && (
+              <div className="flex justify-end">
+                <button
+                  type="button"
+                  onClick={
+                    handleForgotPassword
+                  }
+                  className="text-sm text-violet-600 hover:text-violet-700 font-medium"
+                >
+                  Forgot Password?
+                </button>
+              </div>
+            )}
 
             {error && (
               <p className="text-red-500 text-sm font-medium">
